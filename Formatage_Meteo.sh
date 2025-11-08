@@ -5,7 +5,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-Ville="$1"
+ville="$1"
 
 donnees_auj=$(curl -s "wttr.in/${Ville}?format=%t+%C+%w+%h")
 temp_actuelle=$(echo "$donnees_auj" | awk '{print $1}')
@@ -23,6 +23,7 @@ vent_demain=$(echo "$donnees_demain" | awk '{print $3}')
 humidite_demain=$(echo "$donnees_demain" | awk '{print $4}')
 condition_demain=$(echo "$donnees_demain" | awk '{print $5,$6}')
 
+fichier_sortie="meteo.txt"
 
 echo "--- Météo actuelle pour $Ville ---"
 echo "Température : $temp_actuelle"
@@ -36,3 +37,12 @@ echo "Condition   : $condition_demain"
 echo "Vent        : $vent_demain"
 echo "Humidité    : $humidite_demain"
 
+date=$(date +"%Y-%m-%d")
+heure=$(date +"%H:%M")
+
+
+# Étape 4 : Enregistrement dans meteo.txt
+echo "${date} - ${heure} - ${ville} : ${temp_actuelle} - ${temp_max_demain}" >> "$fichier_sortie"
+
+# Message de confirmation
+echo "Données enregistrées dans $fichier_sortie"
