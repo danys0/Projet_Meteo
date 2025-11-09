@@ -1,11 +1,10 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-        echo "Erreur :  Aucun paramètre en entrée "
-        echo "Usage : ./Extracteur_Meteo.sh Ville"
-fi
-
 Ville="$1"
+if [ -z "$1" ] || [ "$1" -ne 1];
+then
+        ville="Toulouse"
+fi
 
 fichier="./meteo_${Ville}.txt"
 
