@@ -3,6 +3,8 @@ Ville_defaut="Toulouse"
 if [ -z "$1" ];
 then
         Ville="$Ville_defaut"
+else
+	Ville="$1"
 fi
 donnees=$(curl -s "wttr.in/$Ville?format=%l|%t|%x")
 
