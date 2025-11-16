@@ -1,10 +1,10 @@
 #!/bin/bash
-Ville="$1"
-if [ -z "$1" ] || [ "$1" -ne 1];
+Ville_defaut="Toulouse"
+if [ -z "$1" ];
 then
-        ville="Toulouse"
+        Ville="$Ville_defaut"
 fi
-donnees=$(curl -s "wttr.in/$CITY?format=%l|%t|%x")
+donnees=$(curl -s "wttr.in/$Ville?format=%l|%t|%x")
 
 Ville=$(echo "$donnees" | cut -d '|' -f 1)
 temp=$(echo "$donnees" | cut -d '|' -f 2)
